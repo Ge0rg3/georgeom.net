@@ -35,7 +35,7 @@ import datetime
 insert_lines.append("<i style=\"font-size: 0.35em;\">Last updated at: "+str(datetime.datetime.now())+"</i>")
 
 for i in insert_lines[::-1]:
-    index_template.insert(37, i)
+    index_template.insert(36, i)
 
 
 with open('/var/www/html/index.html','w') as f:
