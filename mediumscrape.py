@@ -3,12 +3,7 @@
 import requests as rq
 import feedparser
 
-#r = rq.get("https://medium.com/feed/@georgeomnet")
-
-#rdec = r.text.encode('utf-8')
-
 d = feedparser.parse('https://medium.com/feed/@georgeomnet')
-
 
 links = [i['link'] for i in d.entries]
 titles = [i['title'] for i in d.entries]
@@ -40,7 +35,3 @@ for i in insert_lines[::-1]:
 
 with open('/var/www/html/index.html','w') as f:
     f.write(''.join(index_template))
-
-
-
-#
