@@ -7,3 +7,5 @@ Every 30 minutes, the mediumscrape.py script runs, which:
   iii) Inserts the relevant data into the string containing index_template.html's contents.  
   iv) Writes this data to index.html.  
   
+  
+Is this efficient? No. Does it work? Yes.
