@@ -1,0 +1,61 @@
+/* Stop y scrollbar from shifting page content by hiding x overflow */
+html {
+    overflow-x: hidden;
+    margin-right: calc(-1 * (100vw - 100%));
+    padding-top: 0;
+}
+
+/* Skeleton helper funcs */
+.u-text-center {
+    text-align: center !important;
+}
+
+/* Simple Header*/
+#header {
+    padding-top: 2%;
+    padding-bottom: 1%;
+}
+
+/* Navbar and links */
+#navbar a {
+    color: inherit;
+    text-decoration: none;
+    transition: 0.1s;
+}
+
+#navbar a:hover {
+    color: grey;
+    cursor: pointer;
+}
+
+#navbar {
+    background: white;
+    color: black;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* Default spacer height, set dynamically by JS later */
+#navbar-spacer {
+    height: 0;
+}
+
+/* Make navbar stick to top of page, whilst maintaining container width */
+.sticky {
+    position: fixed;
+    top: 0;
+    width: inherit;
+    max-width: inherit;
+}
+
+/* Center image in skeleton col */
+.center-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Avoid excess spacing in social media links */
+.socials p {
+    margin: 0;
+}

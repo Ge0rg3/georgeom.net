@@ -1,66 +1,99 @@
-// Make sidebar smaller on scroll:
-function sideBarScroll(){
-  var element = document.getElementById("sidebar");
-  if(window.pageYOffset >= 100){
-     element.style.cssText += "width: 15%";
+/*
+    Helper funcs
+*/
+class VirtualCookieJar {
+    constructor() {
+        this.jar = {};
     }
-  else {
-     element.style.cssText += "width: 20%";
-   }
- }
 
-window.onscroll = sideBarScroll;
+    getItems() {
+        return this.jar;
+    }
+    
+    getItem(key) {
+        return this.getItems()[key];
+    }
 
-//Flashing underscore in title:
-function flashingUnderscore() {
-  var underscore_space = document.getElementById("underscore");
-  if (underscore_space.innerHTML == "_") {
-    underscore_space.innerHTML = "";
-  } else {
-    underscore_space.innerHTML = "_";
-  }
+    setItem(key, val) {
+        this.jar[key] = val;
+    }
 }
 
-setInterval(flashingUnderscore, 700);
+/*
+    Lock navbar in place when scrolling.
+*/
+window.onscroll = function() {handleScroll()};
 
-//Allow typing in webpage:
-var titleString = "George O";
-document.getElementById("usertitle").innerHTML = titleString;
-document.onkeypress = function typingListener(key) {
-  // console.log(key.keyCode); console.log(String.fromCharCode(key.keyCode));
-  if (key.keyCode != 60 && key.keyCode != 62) {
-    titleString += (String.fromCharCode(key.keyCode));
-    document.getElementById("usertitle").innerHTML = titleString;
-  }
-};
-//Allow backspace & prevent pagedown on space:
-document.onkeydown = function backspace(key) {
-  if (key.keyCode == 8) {
-    // Fix backspace a "&nbsp;":
-    if (titleString.substr(titleString.length -6).includes("&nbsp;")) {
-      titleString = titleString.substring(0, titleString.length -6);
+let navbar = document.getElementById("navbar");
+let spacer = document.getElementById("navbar-spacer");
+
+let offset = navbar.offsetTop;
+let navHeight = navbar.offsetHeight;
+
+function handleScroll() {
+    if (window.pageYOffset > offset) {
+    navbar.classList.add("sticky");
+    spacer.style.height = navHeight;
     } else {
-      titleString = titleString.substring(0, titleString.length -1);
+    navbar.classList.remove("sticky");
+    spacer.style.height = 0;
     }
-    document.getElementById("usertitle").innerHTML = titleString;
-  } else if (key.keyCode == 32) { // Fix page down on space:
-    key.preventDefault();
-    titleString += "&nbsp;";
-    document.getElementById("usertitle").innerHTML = titleString;
-  }
-};
-
-//
-
-//More dropdown menu:
-//Note: Possibly use onmouseover and onmouseout events for better non-link optimization?
-function dropdown() {
-  var dropdown = document.getElementsByClassName('dropdown-content')[0];
-  if (dropdown.style.opacity == 0) {
-    dropdown.style.opacity = 1;
-    dropdown.style.visibility = "visible";
-  } else {
-    dropdown.style.opacity = 0;
-    dropdown.style.visibility = "hidden";
-  };
 }
+
+/*
+    Light/Dark theme toggle.
+    There are two different methods used to set themes:
+    * localStorage: The preferred way, as vanilla JS cookie handling is annoying.
+    * "Virtual" cookie jar: Simply stored within the JS context, non-persistant. For incognito users. 
+*/
+
+// Check wether to use localstorage or virtual cookies
+let storage_type;
+
+try {
+    localStorage.getItem("success");
+    storage_type = localStorage;
+}
+catch {
+    storage_type = new VirtualCookieJar();
+}
+
+
+// Set page to dark/light via body "dark" class
+let themeText = document.getElementById("theme-text");
+
+function setDark() {
+    document.body.classList.add("dark");
+    storage_type.setItem("theme", "dark");
+    themeText.innerText = "Light Theme";
+}
+
+function setLight() {
+    document.body.classList.remove("dark");
+    storage_type.setItem("theme", "light");
+    themeText.innerText = "Dark Theme";
+}
+
+// Set theme on page load
+if ((storage_type.getItem("theme") || "light") === "dark") {
+    setDark();
+} else {
+    setLight();
+}
+
+// Swap theme function for "Swap [Theme]" button
+function swapTheme() {
+    let currentTheme = storage_type.getItem("theme") || "light";
+    if (currentTheme === "light") {
+        setDark();
+    } else {
+        setLight();
+    }
+}
+
+/*
+    Misc
+*/
+
+// hehe
+document.getElementById = console.log;

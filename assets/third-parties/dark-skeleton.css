@@ -1,0 +1,125 @@
+/* 
+    Styling adapted from https://github.com/c-mart/dark-tango-skeleton by c-mart
+    Adapted for georgeom.net dark mode toggle 03/11/2020
+    All "actual" georgeom.net styling is in style.css
+*/
+
+/*
+    Custom styling:
+*/
+
+
+.dark {
+    color: #d3d7cf;
+    background: #2e3436;
+}
+
+.dark #navbar {
+    background: #2e3436;
+    color: #f1f1f1;
+}
+
+
+/*
+    Styling from c-mart's theme:
+*/
+
+/* Links */
+
+.dark a {
+    color: #729fcf;
+}
+.dark a:hover {
+    color: #eeeeec;
+}
+
+/* Buttons */
+
+.dark .button,
+.dark button,
+.dark input[type="submit"],
+.dark input[type="reset"],
+.dark input[type="button"] {
+    color: #d3d7cf;
+    border: 1px solid #babdb6;
+}
+
+.dark .button:hover,
+.dark button:hover,
+.dark input[type="submit"]:hover,
+.dark input[type="reset"]:hover,
+.dark input[type="button"]:hover,
+.dark .button:focus,
+.dark button:focus,
+.dark input[type="submit"]:focus,
+.dark input[type="reset"]:focus,
+.dark input[type="button"]:focus {
+    color: #eeeeec;
+    border: 1px solid #eeeeec;
+}
+
+.dark .button.button-primary,
+.dark button.button-primary,
+.dark input[type="submit"].button-primary,
+.dark input[type="reset"].button-primary,
+.dark input[type="button"].button-primary {
+    color: #2e3436;
+    background-color: #fcaf3e;
+    border-color: #fcaf3e;
+}
+
+.dark .button.button-primary:hover,
+.dark button.button-primary:hover,
+.dark input[type="submit"].button-primary:hover,
+.dark input[type="reset"].button-primary:hover,
+.dark input[type="button"].button-primary:hover,
+.dark .button.button-primary:focus,
+.dark button.button-primary:focus,
+.dark input[type="submit"].button-primary:focus,
+.dark input[type="reset"].button-primary:focus,
+.dark input[type="button"].button-primary:focus {
+    color: #2e3436;
+    background-color: #f57900;
+    border-color: #f57900;
+}
+
+/* Forms */
+
+.dark input[type="email"],
+.dark input[type="number"],
+.dark input[type="search"],
+.dark input[type="text"],
+.dark input[type="tel"],
+.dark input[type="url"],
+.dark input[type="password"],
+.dark textarea,
+.dark select {
+    background-color: #2e3436;
+    border: 1px solid #babdb6;
+}
+
+.dark input[type="email"]:focus,
+.dark input[type="number"]:focus,
+.dark input[type="search"]:focus,
+.dark input[type="text"]:focus,
+.dark input[type="tel"]:focus,
+.dark input[type="url"]:focus,
+.dark input[type="password"]:focus,
+.dark textarea:focus,
+.dark select:focus {
+    border: 1px solid #fcaf3e;
+}
+
+/* Code */
+
+.dark code {
+    color: #fff;
+    background: #555753;
+    border: #555753;
+}
+
+/* Tables */
+
+.dark td {
+    border-bottom: 1px solid #eeeeec;
+}
