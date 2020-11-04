@@ -3,7 +3,7 @@ html {
     overflow-x: hidden;
     margin-right: calc(-1 * (100vw - 100%));
     padding-top: 0;
-  }
+}
 
 /* Skeleton helper funcs */
 .u-text-center {
@@ -33,7 +33,6 @@ html {
     color: black;
     padding-top: 2rem;
     padding-bottom: 2rem;
-    margin: 0;
 }
 
 /* Default spacer height, set dynamically by JS later */
