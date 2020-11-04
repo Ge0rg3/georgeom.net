@@ -1,3 +1,10 @@
+/* Stop y scrollbar from shifting page content by hiding x overflow */
+html {
+    overflow-x: hidden;
+    margin-right: calc(-1 * (100vw - 100%));
+    padding-top: 0;
+  }
+
 /* Skeleton helper funcs */
 .u-text-center {
     text-align: center !important;
@@ -5,8 +12,8 @@
 
 /* Simple Header*/
 #header {
-    margin-top: 2%;
-    margin-bottom: 1%;
+    padding-top: 2%;
+    padding-bottom: 1%;
 }
 
 /* Navbar and links */

@@ -1,33 +1,6 @@
 /*
     Helper funcs
 */
-class CookieJar {
-    getItems() {
-        let cookies = {};
-        let cookie_str = document.cookie;
-        let chunks = cookie_str.split("; ");
-        for (let chunk of chunks) {
-            let spl = chunk.split("=");
-            cookies[spl[0]] = spl[1];
-        }
-        return cookies;
-    }
-
-    getItem(key) {
-        return this.getItems()[key];
-    }
-
-    setItem(key, val) {
-        let cookies = this.getItems();
-        cookies[key] = val;
-        let cookie_chunks = [];
-        for (let cookie_key in cookies) {
-            cookie_chunks.push(cookie_key + "=" + cookies[cookie_key]);
-        }
-        document.cookie = cookie_chunks.join("; ");
-    }
-}
-
 class VirtualCookieJar {
     constructor() {
         this.jar = {};
@@ -69,32 +42,22 @@ function handleScroll() {
 
 /*
     Light/Dark theme toggle.
-    There are three different ways to store the theme... Thanks, 2020.
-    * Cookies: Preferred approach, stores the theme value in cookies.
-    * Local Storage: Works in local, but not incognito mode (cookies cannot be set to files).
-    * Virtual Cookies: For incognito mode, where both cookies and localStorage are blocked.
+    There are two different methods used to set themes:
+    * localStorage: The preferred way, as vanilla JS cookie handling is annoying.
+    * "Virtual" cookie jar: Simply stored within the JS context, non-persistant. For incognito users. 
 */
 
-// Check wether to use cookie or localstorage
-let storage_type = null;
-// 1: Cookies
-if (document.cookie === "") {
-    document.cookie = "success=true;";
+// Check wether to use localstorage or virtual cookies
+let storage_type;
+
+try {
+    localStorage.getItem("success");
+    storage_type = localStorage;
 }
-if (document.cookie !== "") {
-    storage_type = new CookieJar();
+catch {
+    storage_type = new VirtualCookieJar();
 }
-// 2: Local Storage
-if (storage_type === null) {
-    try {
-        localStorage.getItem("success");
-        storage_type = localStorage;
-    }
-    // 3: Virtual cookies
-    catch {
-        storage_type = new VirtualCookieJar();
-    }
-}
+
 
 // Set page to dark/light via body "dark" class
 let themeText = document.getElementById("theme-text");
@@ -127,3 +90,10 @@ function swapTheme() {
         setLight();
     }
 }
+
+/*
+    Misc
+*/
+
+// hehe
+document.getElementById = console.log;
