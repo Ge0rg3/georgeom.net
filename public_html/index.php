@@ -1,4 +1,4 @@
-<?php require("includes/header.php") ?>
+<?php require("../includes/header.php") ?>
 
 <div class="row">
     <div class="one-half column"><img class="center-image" src="assets/profile.png"></div>
@@ -21,4 +21,4 @@
 </div>
 
 
-<?php require("includes/footer.php") ?>
+<?php require("../includes/footer.php") ?>
