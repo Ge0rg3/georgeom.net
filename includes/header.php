@@ -6,6 +6,14 @@
         <link rel="stylesheet" href="assets/third-parties/skeleton.css">
         <link rel="stylesheet" href="assets/third-parties/dark-skeleton.css">
         <link rel="stylesheet" href="assets/style.css">
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-QLW6MQ2S6Z"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-QLW6MQ2S6Z');
+        </script>
     </head>
 
     <body>
