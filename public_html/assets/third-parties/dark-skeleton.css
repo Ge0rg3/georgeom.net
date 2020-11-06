@@ -9,16 +9,10 @@
 */
 
 
-.dark {
-    color: #d3d7cf;
+.dark, .dark #navbar {
+    color: #e2e6df;
     background: #2e3436;
 }
-
-.dark #navbar {
-    background: #2e3436;
-    color: #f1f1f1;
-}
-
 
 /*
     Styling from c-mart's theme:

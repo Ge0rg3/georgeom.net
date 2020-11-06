@@ -1,0 +1,6 @@
+Contact: mailto:georgeomnet@gmail.com
+Acknowledgments: https://georgeom.net/bounty.php
+Preferred-Languages: en
+Canonical: https://georgeom.net/bounty.php
+Canonical: https://georgeom.net/security.txt
+Policy: https://georgeom.net/bounty.php

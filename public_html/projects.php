@@ -3,6 +3,17 @@
 
 <div class="row">
     <div class="one-half column">
+        <h3>Bug Bounty Programs</h3>
+        <p>For the past year, I've been participating in various public and private bug bounty programs on both <a href="https://hackerone.com/g30rg3">HackerOne</a> and <a href="https://www.intigriti.com/researcher/profile/g30rg3">Intigriti</a>. You can see my Hall of Fame entries <a href="hall-of-fames.php">here</a>.</p>
+    </div>
+    <div class="one-half column">
+        <h3>Competitions & CTFs</h3>
+        <p>I've been competing in CTFs both solo and with my team (<a href="https://2hal.dev/">Highway&nbsp;to&nbsp;HAL</a>) since 2018. You can find my CTF placements <a href="competitions.php">here</a>.</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="one-half column">
         <h3>StegOnline</h3>
         <p>StegOnline is an Open-Source Steganography kit, designed to simplify the creating and solving processes of Steganography challenges. You can find the code <a href="https://github.com/Ge0rg3/StegOnline/">here</a>, or try the site for yourself <a href="https://stegonline.georgeom.net/">here</a>.</p>
     </div>
@@ -19,7 +30,7 @@
     </div>
     <div class="one-half column">
         <h3>Personal Infrastructure</h3>
-        <p>Both <a href="https://georgeom.net">this site</a>, and the more detailed <a href="https://admin.georgeom.net">admin.georgeom.net</a> site are both hand-made (frameworkless) and <a href="https://github.com/Ge0rg3/admin.georgeom.net">open-source</a>. The admin dashboard monitors all server details, and allows custom service control.</p>
+        <p>Both <a href="https://github.com/Ge0rg3/georgeom.net">this site</a>, and the more detailed <a href="https://admin.georgeom.net">admin.georgeom.net</a> site are both hand-made (frameworkless) and <a href="https://github.com/Ge0rg3/">open-source</a>. The admin dashboard monitors all server details, and allows custom service control.</p>
     </div>
 </div>
 
