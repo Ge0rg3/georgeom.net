@@ -60,7 +60,7 @@ catch {
 
 
 // Set page to dark/light via body "dark" class
-let themeText = document.getElementById("theme-text");
+let themeText = document.getElementById("swap-theme-button");
 
 function setDark() {
     document.body.classList.add("dark");
@@ -82,6 +82,7 @@ if ((storage_type.getItem("theme") || "light") === "dark") {
 }
 
 // Swap theme function for "Swap [Theme]" button
+document.getElementById("swap-theme-button").addEventListener("click", swapTheme);
 function swapTheme() {
     let currentTheme = storage_type.getItem("theme") || "light";
     if (currentTheme === "light") {

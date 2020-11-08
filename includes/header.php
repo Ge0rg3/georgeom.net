@@ -58,7 +58,7 @@
                         <a href="projects.php">Projects</a>
                     </div>
                     <div class="three columns">
-                        <a id="theme-text" onclick="swapTheme()"></a>
+                        <a id="swap-theme-button"></a>
                     </div>
                 </div>
                 <hr>
