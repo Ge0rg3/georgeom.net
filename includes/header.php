@@ -1,3 +1,17 @@
+<!DOCTYPE html>
+<!--
+ ________________________________________
+/ If you're looking for the source code, \
+| go to:                                 |
+| https://github.com/Ge0rg3/georgeom.net |
+\ :)                                     /
+ ----------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+-->
 <html>
 
     <head>
