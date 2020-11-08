@@ -15,7 +15,10 @@
 <html>
 
     <head>
-        <title>George O</title>
+        <title>George Omnet</title>
+        <meta name="description" content="A cybersecurity research and competition blog by George Omnet. Contains CTF write-ups, bug bounty writeups and independent research.">
+        <meta name="author" content="George Omnet">
+        <meta name="keywords" content="George Omnet, georgeomnet, Cybersecurity, CTF Writeup, Bug Bounty">
         <link rel="stylesheet" href="assets/third-parties/normalize.css">
         <link rel="stylesheet" href="assets/third-parties/skeleton.css">
         <link rel="stylesheet" href="assets/third-parties/dark-skeleton.css">
