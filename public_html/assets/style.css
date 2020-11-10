@@ -47,6 +47,7 @@ body {
 
 /* Make navbar stick to top of page, whilst maintaining container width */
 .sticky {
+    margin-right: calc(-1 * (100vw - 100%));
     position: fixed;
     top: 0;
     width: inherit;
