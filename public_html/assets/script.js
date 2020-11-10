@@ -24,19 +24,24 @@ class VirtualCookieJar {
 */
 window.onscroll = function() {handleScroll()};
 
+let htmlEl = document.documentElement;
 let navbar = document.getElementById("navbar");
 let spacer = document.getElementById("navbar-spacer");
+let navbarContainer = document.getElementById("navbar-container");
 
 let offset = navbar.offsetTop;
 let navHeight = navbar.offsetHeight;
+let scrollbarOffset = window.getComputedStyle(htmlEl).marginRight;
 
 function handleScroll() {
     if (window.pageYOffset > offset) {
         navbar.classList.add("sticky");
         spacer.style.height = navHeight + "px";
+        navbarContainer.style.marginRight = scrollbarOffset + "px";
     } else {
         navbar.classList.remove("sticky");
         spacer.style.height = 0 + "px";
+        navbarContainer.style.marginRight = "0px";
     }
 }
 

@@ -47,7 +47,7 @@
             <!-- Links -->
             <div id="navbar-spacer">&nbsp;</div>
             <div id="navbar" class="row u-text-center">
-                <div class="container">
+                <div id="navbar-container" class="container">
                     <div class="three columns">
                         <a href="index.php">Home</a>
                     </div>
