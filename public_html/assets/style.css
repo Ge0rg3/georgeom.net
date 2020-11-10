@@ -1,7 +1,7 @@
 /* Stop y scrollbar from shifting page content by hiding x overflow */
 html {
     overflow-x: hidden;
-    margin-right: calc(-1 * (100vw - 100%));
+    margin-right: calc(-1    * (100vw - 100%));
     padding-top: 0;
     height: 100%;
 }
@@ -47,7 +47,6 @@ body {
 
 /* Make navbar stick to top of page, whilst maintaining container width */
 .sticky {
-    margin-right: calc(-1 * (100vw - 100%));
     position: fixed;
     top: 0;
     width: inherit;
