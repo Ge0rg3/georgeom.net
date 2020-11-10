@@ -91,10 +91,3 @@ function swapTheme() {
         setLight();
     }
 }
-
-/*
-    Misc
-*/
-
-// hehe
-document.getElementById = console.log;
