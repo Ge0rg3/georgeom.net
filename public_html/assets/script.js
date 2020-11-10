@@ -32,11 +32,11 @@ let navHeight = navbar.offsetHeight;
 
 function handleScroll() {
     if (window.pageYOffset > offset) {
-    navbar.classList.add("sticky");
-    spacer.style.height = navHeight;
+        navbar.classList.add("sticky");
+        spacer.style.height = navHeight + "px";
     } else {
-    navbar.classList.remove("sticky");
-    spacer.style.height = 0;
+        navbar.classList.remove("sticky");
+        spacer.style.height = 0 + "px";
     }
 }
 
