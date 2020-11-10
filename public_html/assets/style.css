@@ -3,6 +3,11 @@ html {
     overflow-x: hidden;
     margin-right: calc(-1 * (100vw - 100%));
     padding-top: 0;
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
 }
 
 /* Skeleton helper funcs */
