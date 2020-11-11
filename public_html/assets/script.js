@@ -32,7 +32,6 @@ function removeDarkreaderStyles() {
     });
     // Return true if dark reader els existed
     return darkreaderEls.length > 0;
-
 };
 let darkreaderInstalled = removeDarkreaderStyles();
 
