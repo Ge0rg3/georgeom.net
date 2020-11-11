@@ -20,9 +20,26 @@ class VirtualCookieJar {
 }
 
 /*
+    Block "Darkreader" extension
+        - It's the most popular dark-theme extension
+        - The site has a nicer default dark theme
+*/
+function removeDarkreaderStyles() {
+    let darkreaderEls = Array.from(document.getElementsByClassName("darkreader"));
+    darkreaderEls.forEach((el) => {
+        // Darkreader depends on CSS media queries, so we break them.
+        el.media = "disabled";
+    });
+    // Return true if dark reader els existed
+    return darkreaderEls.length > 0;
+
+};
+let darkreaderInstalled = removeDarkreaderStyles();
+
+
+/*
     Dock navbar when scrolling.
 */
-
 const navbar = document.getElementById("navbar");
 const spacer = document.getElementById("navbar-spacer");
 const container = document.getElementById("page-contianer");
@@ -61,14 +78,14 @@ window.onscroll = function() {handleScroll()};
 */
 
 // Check wether to use localstorage or virtual cookies
-let storage_type;
+let storageType;
 
 try {
     localStorage.getItem("success");
-    storage_type = localStorage;
+    storageType = localStorage;
 }
 catch {
-    storage_type = new VirtualCookieJar();
+    storageType = new VirtualCookieJar();
 }
 
 
@@ -77,30 +94,56 @@ let themeText = document.getElementById("swap-theme-button");
 
 function setDark() {
     document.body.classList.add("dark");
-    storage_type.setItem("theme", "dark");
+    storageType.setItem("theme", "dark");
     themeText.innerText = "Light Theme";
 }
 
 function setLight() {
     document.body.classList.remove("dark");
-    storage_type.setItem("theme", "light");
+    storageType.setItem("theme", "light");
     themeText.innerText = "Dark Theme";
 }
 
 // Set theme on page load
-if ((storage_type.getItem("theme") || "light") === "dark") {
-    setDark();
-} else {
-    setLight();
+let pageloadTheme = storageType.getItem("theme") || "unset";
+if (pageloadTheme === "unset") {
+    // If darkreader installed, dark by default!
+    pageloadTheme = darkreaderInstalled ? "dark" : "light";
 }
+
+if (pageloadTheme === "dark") setDark();
+else setLight();
 
 // Swap theme function for "Swap [Theme]" button
 document.getElementById("swap-theme-button").addEventListener("click", swapTheme);
 function swapTheme() {
-    let currentTheme = storage_type.getItem("theme") || "light";
-    if (currentTheme === "light") {
-        setDark();
-    } else {
-        setLight();
-    }
+    let currentTheme = storageType.getItem("theme");
+    if (currentTheme === "light") setDark();
+    else setLight();
 }
+
+
+/*
+    Repetitive tasks
+*/
+// Autmatically update theme (i.e. if multiple windows are open)
+let currentTheme = pageloadTheme;
+setInterval(() => {
+    let previousTheme = currentTheme;
+    currentTheme = storageType.getItem("theme");
+
+    // If theme change, adjust
+    if (previousTheme !== currentTheme) {
+        if (currentTheme === "light") setLight();
+        else setDark();
+    }
+    
+    // If change to dark reader installation, adjust theme accordingly
+    let darkreaderCheck = removeDarkreaderStyles();
+    if (darkreaderCheck !== darkreaderInstalled) {
+        if (darkreaderCheck && currentTheme === "light") setDark();
+        else if (!darkreaderCheck && currentTheme === "dark") setLight();
+        darkreaderInstalled = darkreaderCheck;
+    }
+
+}, 250);
