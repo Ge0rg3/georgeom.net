@@ -45,6 +45,11 @@ const container = document.getElementById("page-contianer");
 
 // Resize navbar on page scroll
 function handleResize() {
+    // Not on mobile
+    if (screen.width < 450) {
+        navbar.style.width = "";
+        return
+    }
     // Vars needed for navbar docking
     navbarOffset = navbar.offsetTop;
     navHeight = navbar.offsetHeight;
@@ -58,6 +63,7 @@ window.onresize = handleResize;
 
 // Triggers on all scrolls
 function handleScroll() {
+    if (screen.width < 450) return; // Not on mobile
     if (window.pageYOffset > navbarOffset) {
         navbar.classList.add("sticky");
         spacer.style.height = navHeight + "px";

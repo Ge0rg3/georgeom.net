@@ -23,6 +23,7 @@
         <link rel="stylesheet" href="assets/third-parties/skeleton.css">
         <link rel="stylesheet" href="assets/third-parties/dark-skeleton.css">
         <link rel="stylesheet" href="assets/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">        
         <meta name="google-site-verification" content="7GT6boD82vaGq30OJUVrLAufphRmk5bGQjGkPzg8H6c" />
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-QLW6MQ2S6Z"></script>
