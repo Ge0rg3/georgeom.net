@@ -36,7 +36,7 @@
         <?php
             // Pizza if asked for
             if ($_GET["pizza"] === "time") {
-                echo '<style>body { background-image: url(assets/pizza.gif) }</style>';
+                echo '<link rel="stylesheet" href="pizza.css">';
             }
         ?>
     </head>
