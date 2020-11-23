@@ -36,7 +36,7 @@
         <?php
             // Pizza if asked for
             if ($_GET["pizza"] === "time") {
-                echo '<link rel="stylesheet" href="pizza.css">';
+                echo '<link rel="stylesheet" href="assets/pizza.css">';
             }
         ?>
     </head>
