@@ -33,6 +33,12 @@
             gtag('js', new Date());
             gtag('config', 'G-QLW6MQ2S6Z');
         </script>
+        <?php
+            // Pizza if asked for
+            if ($_GET["pizza"] === "time") {
+                echo '<style>body { background-image: url(assets/pizza.gif) }</style>';
+            }
+        ?>
     </head>
 
     <body>

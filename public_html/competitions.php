@@ -7,6 +7,7 @@
 
 <strong>2020</strong>
 <ul>
+    <li>Intigriti 1337UP 1120 Live Hacking Event</li>
     <li>CyberCenturion VI (CCVI), 1st Place</li>
 </ul>
 
