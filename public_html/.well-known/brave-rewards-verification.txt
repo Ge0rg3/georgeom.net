@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: georgeom.net
+Token: 916ac5ae0034e5139d0f5c3b00cb0da6ba3aa5e8211fc72e090c6195b2b9be29
