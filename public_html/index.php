@@ -10,7 +10,7 @@
             This blog mostly covers bug bounty and CTF write-ups to document my work over time. You can find me online here:
         </p>
         <div class="socials">
-            <p><a href="mailto:georgeomnet@gmail.com">Email</a></p>
+            <p><a href="mailto:george@georgeom.net">Email</a></p>
             <p><a href="https://twitter.com/georgeomnet">Twitter</a></p>
             <p><a href="https://github.com/Ge0rg3/">GitHub</a></p>
             <p><a href="https://medium.com/@georgeomnet">Medium</a></p>

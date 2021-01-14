@@ -1,4 +1,4 @@
-Contact: mailto:georgeomnet@gmail.com
+Contact: mailto:george@georgeom.net
 Acknowledgments: https://georgeom.net/bounty.php
 Preferred-Languages: en
 Canonical: https://georgeom.net/bounty.php

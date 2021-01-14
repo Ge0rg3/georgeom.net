@@ -4,7 +4,7 @@
 
 <h5>Description</h5>
 <p class="bottom-0">As someone who regularly participates in bug bounties, it's only fair that my assets have a policy themselves.</p>
-<p>Please feel free to report any bug found under the <code>*.georgeom.net</code> domain (unless stated below) or on my <a href="https://github.com/Ge0rg3/">GitHub profile</a> to <a href="mailto:georgeomnet@gmail.com">georgeomnet@gmail.com</a>.</p>
+<p>Please feel free to report any bug found under the <code>*.georgeom.net</code> domain (unless stated below) or on my <a href="https://github.com/Ge0rg3/">GitHub profile</a> to <a href="mailto:george@georgeom.net">george@georgeom.net</a>.</p>
 
 <h5>Assets</h5>
 <p>All <code>*.georgeom.net</code> domains are valid (unless mentioned further down), but here's a list of my current assets:</p>
