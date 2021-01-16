@@ -31,7 +31,7 @@ function removeDarkreaderStyles() {
         el.media = "disabled";
     });
     // Return true if dark reader els existed
-    return darkreaderEls.length > 0;
+    return darkreaderEls.length > 1; // 1, not 0, as darkreader installs fallback even when disabled
 };
 let darkreaderInstalled = removeDarkreaderStyles();
 
