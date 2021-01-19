@@ -1,0 +1,57 @@
+==================================================================
+https://keybase.io/georgeomnet
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://georgeom.net
+  * I am georgeomnet (https://keybase.io/georgeomnet) on keybase.
+  * I have a public key ASBWXP-OSg9kHKlXWk8dNKmI8xeHghRoiR3NclKJ9eV75go
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01163579c67b2c399eeaea9b92471f1df84b46e1c0e3401ed5963d08e2e53195e3af0a",
+      "host": "keybase.io",
+      "kid": "0120565cff8e4a0f641ca9575a4f1d34a988f31787821468891dcd725289f5e57be60a",
+      "uid": "bbc671de6946d1819bc5ec00933e5619",
+      "username": "georgeomnet"
+    },
+    "merkle_root": {
+      "ctime": 1611061523,
+      "hash": "19757eedea5261b6bda911164087e5fcb69ab75ef8546c6aaee129b6ff9f4634223fdbf8878108e190eeb2235a0fac3fd24e2e6ba2233e2c45f44d2b3d87ca29",
+      "hash_meta": "85df626b8786c75d3f5ed4550fe2fd769c232ecfd6c5c665538d88d45bf6bd4b",
+      "seqno": 18831616
+    },
+    "service": {
+      "entropy": "FImlNqnT0zs48eSuWVP5F+C8",
+      "hostname": "georgeom.net",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "5.5.2"
+  },
+  "ctime": 1611061548,
+  "expire_in": 504576000,
+  "prev": "a03589161ca9ed2ec87e67070365a43f0db54bb010487069dd5c844b2b02730e",
+  "seqno": 8,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgVlz/jkoPZBypV1pPHTSpiPMXh4IUaIkdzXJSifXle+YKp3BheWxvYWTESpcCCMQgoDWJFhyp7S7IfmcHA2WkPw21S7AQSHBp3VyESysCcw7EIDs4GAp/fsi9ZUDV2aARBEtcrmSN1OTi/1ZNNV/18j0tAgHCo3NpZ8RAYLlvVCI5eVXGSfqb0VXoYK3Vp3m7Hm1Kol8KYL0yxZflgYEEFU3rlaX7WsAyoPGf+87PLuzyltufAbhzAMRkAqhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIJ6zVyoG8cwSW5LbhZhJNq84pobulNqguTfkY/8K1eyxo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/georgeomnet
+
+==================================================================
+
