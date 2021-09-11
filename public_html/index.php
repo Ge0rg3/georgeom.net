@@ -1,7 +1,7 @@
 <?php require("../includes/header.php") ?>
 
 <div class="row">
-    <div class="one-half column"><img class="center-image" src="assets/profile.png"></div>
+    <div class="one-half column"><img class="center-image profile-image" src="assets/profile.png"></div>
     <div class="six columns">
         <p>
             Hi! I'm a computer science and cybersecurity enthusiast, currently working as a Technology Degree Apprentice at Accenture UK.

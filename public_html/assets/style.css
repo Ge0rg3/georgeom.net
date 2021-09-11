@@ -91,3 +91,9 @@ body {
     margin-bottom: 0;
     padding-bottom: 0;
 }
+
+/* Fit profile image to div */
+.profile-image {
+    max-width: 75%;
+}
+
