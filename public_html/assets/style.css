@@ -28,13 +28,16 @@ body {
 }
 
 /* Navbar and links */
-#navbar a {
+#navbar a, .media a {
     color: inherit;
     text-decoration: none;
+}
+
+a {
     transition: 0.1s;
 }
 
-#navbar a:hover {
+#navbar a:hover, .media a:hover {
     color: grey;
     cursor: pointer;
 }
@@ -82,8 +85,9 @@ body {
 }
 
 /* Avoid excess spacing in social media links */
-.socials p {
-    margin: 0;
+.socials {
+    text-align: center;
+    margin-top: 1rem;
 }
 
 /* No spacing below element */
@@ -97,3 +101,19 @@ body {
     max-width: 75%;
 }
 
+
+.media p {
+    margin-bottom: 1rem;
+}
+
+.date {
+    opacity: 70%;
+}
+
+.films {
+    /* border-right: solid grey 2px; */
+}
+
+li {
+    font-size: 70%;
+}

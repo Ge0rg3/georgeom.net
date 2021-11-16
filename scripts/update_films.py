@@ -25,10 +25,13 @@ for post in posts:
         "title": post.get("letterboxd_filmtitle"),
         "link": post.get("link"),
         "rating": post.get("letterboxd_memberrating"),
-        "date": int(mktime(post.get("published_parsed")))
+        "watched": int(mktime(post.get("published_parsed")))
     })
+
+# Sort by watch date
+sorted_reviews = sorted(reviews, key=lambda i: i["watched"], reverse=True)
 
 # Write to file
 f =  open(output_filepath, "w")
-dump(reviews, f)
+dump(sorted_reviews, f)
 f.close()

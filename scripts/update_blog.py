@@ -41,7 +41,6 @@ for post in posts:
     sentences = [sentence + "." for sentence in text.split(". ")]
     extracted_text = " ".join(sentences[:4])
     # Append to total array
-    date_obj = parsedate_to_datetime(post.get("published"))
     parsed_posts.append({
         "title": post.get("title"),
         "link": post.get("link"),
