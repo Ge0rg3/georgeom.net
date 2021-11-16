@@ -1,6 +1,8 @@
 // Get blog posts from JSON file
+const cacheBuster = btoa(new Date().toGMTString());
+
 let posts = [];
-fetch("/data/blog.json").then((res) => {
+fetch("/data/blog.json?cache=" + cacheBuster).then((res) => {
     res.json().then((retrievedPosts) => {
         console.info(`${retrievedPosts.length} posts loaded.`);
         posts = retrievedPosts;
