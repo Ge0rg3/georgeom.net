@@ -1,7 +1,7 @@
 /*
     Load recent films and books.
 */
-books = fetch("/data/books.json").then((res) => {
+fetch("/data/books.json").then((res) => {
     res.json().then((books) => {
         console.info(`${books.length} books loaded.`);
         let booksList = document.getElementById("books-list");
@@ -20,7 +20,7 @@ books = fetch("/data/books.json").then((res) => {
     })
 })
 
-films = fetch("/data/films.json").then((res) => {
+fetch("/data/films.json").then((res) => {
     res.json().then((films) => {
         console.info(`${films.length} films loaded.`);
         let filmsList = document.getElementById("films-list");

@@ -15,7 +15,7 @@
 <html>
 
     <head>
-        <title>George Omnet</title>
+        <title>georgeom.net</title>
         <meta name="description" content="A cybersecurity research and competition blog by George Omnet. Contains CTF write-ups, bug bounty writeups and independent research.">
         <meta name="author" content="George Omnet">
         <meta name="keywords" content="George Omnet, georgeomnet, Cybersecurity, CTF Writeup, Bug Bounty">
@@ -47,7 +47,7 @@
             <!-- Header -->
             <div id="header" class="row">
                 <div class="u-text-center">
-                    <h1>George Omnet</h1>
+                    <h1>georgeom.net</h1>
                 </div>
             </div>
 
