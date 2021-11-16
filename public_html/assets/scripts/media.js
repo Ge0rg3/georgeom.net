@@ -10,7 +10,7 @@ fetch("/data/books.json").then((res) => {
             // Convert date to string
             let book = books[i];
             let dateObject = new Date(book.read*1000);
-            let dateString = dateObject.getDay() + "/" + dateObject.getMonth() + "/" + dateObject.getFullYear();
+            let dateString = (dateObject.getDate() + 1) + "/" + (dateObject.getMonth() + 1) + "/" + dateObject.getFullYear();
             // Combine all info to list element and append
             let html = `<li><a href="${book.link}">
             ${book.title} <span class="date">${'★'.repeat(book.rating)} ${dateString}</span>
@@ -29,7 +29,7 @@ fetch("/data/films.json").then((res) => {
             // Convert date to string
             let film = films[i];
             let dateObject = new Date(film.watched*1000);
-            let dateString = dateObject.getDay() + "/" + dateObject.getMonth() + "/" + dateObject.getFullYear();
+            let dateString = (dateObject.getDate() + 1) + "/" + (dateObject.getMonth() + 1) + "/" + dateObject.getFullYear();
             // Combine all info to list element and append
             let html = `<li><a href="${film.link}">
             ${film.title} <span class="date"> ${dateString}</span>

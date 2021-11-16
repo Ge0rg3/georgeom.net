@@ -64,7 +64,15 @@ def getMedium():
         })
     return parsed_posts
 
-posts = getMedium()
+# Get posts from markdown folder
+def getMarkdown():
+    posts = []
+    return []
+
+medium_posts = getMedium()
+markdown_posts = getMarkdown()
+posts = dict(medium_posts.items(), markdown_posts.items())
+
 # Write to file
 f =  open(output_filepath, "w")
 dump(posts, f)
