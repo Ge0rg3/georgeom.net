@@ -110,10 +110,10 @@ a {
     opacity: 70%;
 }
 
-.films {
-    /* border-right: solid grey 2px; */
-}
-
 li {
     font-size: 70%;
+}
+
+#blog-filter {
+    margin-top: -3rem;
 }
