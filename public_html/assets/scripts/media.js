@@ -13,8 +13,8 @@ fetch("/data/books.json?cache=" + cacheBuster).then((res) => {
             let dateObject = new Date(book.read*1000);
             let dateString = dateObject.getDate() + "/" + (dateObject.getMonth() + 1) + "/" + dateObject.getFullYear();
             // Combine all info to list element and append
-            let html = `<li><a href="${book.link}">
-            ${book.title} <span class="date">${'★'.repeat(book.rating)} ${dateString}</span>
+            let html = `<li><a href="${sanitize(book.link)}">
+            ${sanitize(book.title)} <span class="date">${'★'.repeat(book.rating)} ${dateString}</span>
             </a></li>`;
             booksList.innerHTML += html;
         }
@@ -31,9 +31,12 @@ fetch("/data/films.json?cache=" + cacheBuster).then((res) => {
             let film = films[i];
             let dateObject = new Date(film.watched*1000);
             let dateString = dateObject.getDate() + "/" + (dateObject.getMonth() + 1) + "/" + dateObject.getFullYear();
+            // Get rating
+            let rating = "★".repeat(Math.floor(film.rating));
+            if ((film.rating+"").endsWith(".5")) rating += "½";
             // Combine all info to list element and append
-            let html = `<li><a href="${film.link}">
-            ${film.title} <span class="date"> ${dateString}</span>
+            let html = `<li><a href="${sanitize(film.link)}">
+            ${sanitize(film.title)} <span class="date">${rating} ${dateString}</span>
             </a></li>`;
             filmsList.innerHTML += html;
         }

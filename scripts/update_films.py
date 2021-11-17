@@ -1,10 +1,10 @@
 """
     Script to put most recent letterboxd reviews into JSON file.
 """
+from datetime import datetime
 from feedparser import parse
 from json import dump
 from sys import argv
-from time import mktime
 
 RSS_URL = "https://letterboxd.com/g30rg3/rss/"
 
@@ -21,11 +21,12 @@ posts = feed.entries
 # Parse into json
 reviews = []
 for post in posts:
+    date_obj = datetime.strptime(post.get("letterboxd_watcheddate"), "%Y-%m-%d")
     reviews.append({
         "title": post.get("letterboxd_filmtitle"),
         "link": post.get("link"),
         "rating": post.get("letterboxd_memberrating"),
-        "watched": int(mktime(post.get("published_parsed")))
+        "watched": int(date_obj.timestamp())
     })
 
 # Sort by watch date

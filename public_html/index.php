@@ -27,6 +27,7 @@
     </div>
 </div>
 
-<script src="assets/scripts/media.js"></script>
 
 <?php require("../includes/footer.php") ?>
+
+<script src="assets/scripts/media.js"></script>

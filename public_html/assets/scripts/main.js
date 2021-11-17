@@ -19,6 +19,12 @@ class VirtualCookieJar {
     }
 }
 
+function sanitize(str) {
+    return str.replace(/[^\w. ]/gi, function (c) {
+		return '&#' + c.charCodeAt(0) + ';';
+	});
+}
+
 /*
     Block "Darkreader" extension
         - It's the most popular dark-theme extension
