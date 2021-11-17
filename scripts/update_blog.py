@@ -71,7 +71,7 @@ def getMarkdown():
 
 medium_posts = getMedium()
 markdown_posts = getMarkdown()
-posts = dict(medium_posts.items(), markdown_posts.items())
+posts = medium_posts + markdown_posts
 
 # Write to file
 f =  open(output_filepath, "w")
