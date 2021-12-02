@@ -14,8 +14,8 @@
 
 <div class="row">
     <div class="one-half column">
-        <h3>StegOnline</h3>
-        <p>StegOnline is an Open-Source Steganography kit, designed to simplify the creating and solving processes of Steganography challenges. You can find the code <a href="https://github.com/Ge0rg3/StegOnline/">here</a>, or try the site for yourself <a href="https://stegonline.georgeom.net/">here</a>.</p>
+        <h3>Python IP Rotator</h3>
+        <p><code>requests-ip-rotator</code> is a Python package that I developed to utilize AWS API Gateway to send requests from seemingly-random IPs. You can find it on <a href="https://github.com/Ge0rg3/requests-ip-rotator">GitHub</a>.</p>
     </div>
     <div class="one-half column">
         <h3>H2H Toolkit</h3>
@@ -25,9 +25,17 @@
 
 <div class="row">
     <div class="one-half column">
+        <h3>StegOnline</h3>
+        <p>StegOnline is an Open-Source Steganography kit, designed to simplify the creating and solving processes of Steganography challenges. You can find the code <a href="https://github.com/Ge0rg3/StegOnline/">here</a>, or try the site for yourself <a href="https://stegonline.georgeom.net/">here</a>.</p>
+    </div>
+    <div class="one-half column">
         <h3>Flask Parameter Validation</h3>
         <p>Flask Parameter Validation is a python package, used as an extension to Flask APIs to simplify the parameter handling, validating and type-checking of all input types. You can find the pypi page <a href="https://pypi.org/project/Flask-Parameter-Validation/">here</a>, or view the source code <a href="https://github.com/Ge0rg3/Flask-Parameter-Validation">here</a>.</p>
     </div>
+</div>
+
+<div class="row">
+    <div class="three columns">&nbsp;</div>
     <div class="one-half column">
         <h3>Personal Infrastructure</h3>
         <p>Both <a href="https://github.com/Ge0rg3/georgeom.net">this site</a>, and the more detailed <a href="https://admin.georgeom.net">admin.georgeom.net</a> site are both hand-made (frameworkless) and <a href="https://github.com/Ge0rg3/">open-source</a>. The admin dashboard monitors all server details, and allows custom service control.</p>
