@@ -116,11 +116,7 @@ function setLight() {
 }
 
 // Set theme on page load
-let pageloadTheme = storageType.getItem("theme") || "unset";
-if (pageloadTheme === "unset") {
-    // If darkreader installed, dark by default!
-    pageloadTheme = darkreaderInstalled ? "dark" : "light";
-}
+let pageloadTheme = storageType.getItem("theme") || "dark";
 
 if (pageloadTheme === "dark") setDark();
 else setLight();

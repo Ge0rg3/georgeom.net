@@ -21,7 +21,10 @@ posts = feed.entries
 # Parse into json
 reviews = []
 for post in posts:
-    date_obj = datetime.strptime(post.get("letterboxd_watcheddate"), "%Y-%m-%d")
+    watchdate = post.get("letterboxd_watcheddate")
+    if watchdate is None:
+        continue
+    date_obj = datetime.strptime(watchdate, "%Y-%m-%d")
     reviews.append({
         "title": post.get("letterboxd_filmtitle"),
         "link": post.get("link"),
