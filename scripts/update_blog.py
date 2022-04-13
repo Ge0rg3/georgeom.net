@@ -19,7 +19,9 @@ def getMedium():
     # Parse RSS Feed
     feed = parse(RSS_URL)
     posts = feed.entries
-
+    if len(posts) == 0:
+        print("Captcha'd")
+        exit()
     # Convert to dict
     parsed_posts = []
     for post in posts:
