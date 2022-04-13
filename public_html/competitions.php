@@ -5,6 +5,11 @@
     <strong>In-Person Events</strong>
 </div>
 
+<strong>2022</strong>
+<ul>
+    <li>Nullcon Berlin 2022 GoogleVRP CTF, 3rd Place</li>
+</ul>
+
 <strong>2020</strong>
 <ul>
     <li>Intigriti 1337UP 1120 Live Hacking Event</li>
