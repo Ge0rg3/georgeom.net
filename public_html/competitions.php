@@ -7,6 +7,7 @@
 
 <strong>2022</strong>
 <ul>
+    <li>Meta BountyCon EDU Live Hacking Event</li>
     <li>Nullcon Berlin 2022 GoogleVRP CTF, 3rd Place</li>
 </ul>
 
