@@ -3,11 +3,11 @@
 <div class="row">
     <div class="one-half column">
         <img class="center-image profile-image" src="assets/profile.png">
-        <p class="socials"><a href="https://twitter.com/georgeomnet">Twitter</a> | <a href="https://github.com/Ge0rg3/">GitHub</a> | <a href="mailto:george@georgeom.net">Email</a></p>
+        <p class="socials"><a href="https://twitter.com/georgeomnet">Twitter</a> | <a href="https://github.com/Ge0rg3/">GitHub</a> | <a href="mailto:george@georgeom.net">Email</a> | <a href="https://www.linkedin.com/in/georgeomnet/">LinkedIn</a></p>
     </div>
     <div class="six columns">
         <p>
-            Hi! I'm a computer science and cybersecurity enthusiast, currently working as a Technology Degree Apprentice at Accenture UK.
+            Hi! I'm a computer science and cybersecurity enthusiast, currently working as a principal software engineer with Photon Insights.
         </p>
         <p>
             This blog mostly covers bug bounty and CTF write-ups to document my work over time. You can find me elsewhere online at the links under the photo.
