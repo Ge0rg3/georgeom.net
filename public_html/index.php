@@ -2,7 +2,7 @@
 
 <div class="row">
     <div class="one-half column">
-        <img class="center-image profile-image" src="assets/profile.png">
+        <img class="center-image profile-image" src="assets/profile.png" width="300" height="300">
         <p class="socials"><a href="https://twitter.com/georgeomnet">Twitter</a> | <a href="https://github.com/Ge0rg3/">GitHub</a> | <a href="mailto:george@georgeom.net">Email</a> | <a href="https://www.linkedin.com/in/georgeomnet/">LinkedIn</a></p>
     </div>
     <div class="six columns">
