@@ -23,7 +23,9 @@ entries = feed.entries
 # Parse into array
 books = []
 for entry in entries:
-    date_obj = parsedate_to_datetime(entry.get("user_read_at"))
+    read_at = entry.get("user_read_at")
+    added_at = entry.get("user_date_added")
+    date_obj = parsedate_to_datetime(read_at or added_at)
     book_summary = BeautifulSoup(entry.get("summary"), "html.parser").text
     rating = book_summary.split("rating: ")[2].split("\n")[0]
     books.append({
