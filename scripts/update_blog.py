@@ -37,7 +37,7 @@ def getMedium():
         for tag in soup.find_all(["em", "h3"]):
             tag.replaceWith("")
         # Extract text from HTML
-        text = " ".join(soup.findAll(text=True))
+        text = " ".join(soup.findAll(string=True))
         # Fix spacing issues in sentences (sometimes space before ".")
         text = text.replace(" .", "")
         # Get only first 4 sentences
