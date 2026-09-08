@@ -1,44 +1,31 @@
 /*
     Load recent films and books.
 */
-const cacheBuster = btoa(new Date().toGMTString());
-fetch("/data/books.json?cache=" + cacheBuster).then((res) => {
-    res.json().then((books) => {
-        console.info(`${books.length} books loaded.`);
-        let booksList = document.getElementById("books-list");
-        // Iterate through books and add to HTML list
-        for (let i=0; i < 3; i++) {
-            // Convert date to string
-            let book = books[i];
-            let dateObject = new Date(book.read*1000);
-            let dateString = dateObject.getDate() + "/" + (dateObject.getMonth() + 1) + "/" + dateObject.getFullYear();
-            // Combine all info to list element and append
-            let html = `<li><a href="${sanitize(book.link)}">
-            ${sanitize(book.title)} <span class="date">${'★'.repeat(book.rating)} ${dateString}</span>
-            </a></li>`;
-            booksList.innerHTML += html;
-        }
-    })
-})
+function renderMedia(items, listId, dateField, formatRating) {
+    const list = document.getElementById(listId);
+    if (!list) return;
+    const rows = [];
+    for (let i = 0; i < Math.min(3, items.length); i++) {
+        const item = items[i];
+        const dateObject = new Date(item[dateField] * 1000);
+        const dateString = dateObject.getDate() + "/" + (dateObject.getMonth() + 1) + "/" + dateObject.getFullYear();
+        rows.push(`<li><a href="${sanitize(item.link)}">
+        ${sanitize(item.title)} <span class="date">${formatRating(item.rating)} ${dateString}</span>
+        </a></li>`);
+    }
+    list.innerHTML = rows.join("");
+}
 
-fetch("/data/films.json?cache=" + cacheBuster).then((res) => {
-    res.json().then((films) => {
-        console.info(`${films.length} films loaded.`);
-        let filmsList = document.getElementById("films-list");
-        // Iterate through films and add to HTML list
-        for (let i=0; i < 3; i++) {
-            // Convert date to string
-            let film = films[i];
-            let dateObject = new Date(film.watched*1000);
-            let dateString = dateObject.getDate() + "/" + (dateObject.getMonth() + 1) + "/" + dateObject.getFullYear();
-            // Get rating
-            let rating = "★".repeat(Math.floor(film.rating));
-            if ((film.rating+"").endsWith(".5")) rating += "½";
-            // Combine all info to list element and append
-            let html = `<li><a href="${sanitize(film.link)}">
-            ${sanitize(film.title)} <span class="date">${rating} ${dateString}</span>
-            </a></li>`;
-            filmsList.innerHTML += html;
-        }
-    })
-})
+fetch("/data/books.json").then((res) => res.json()).then((books) => {
+    console.info(`${books.length} books loaded.`);
+    renderMedia(books, "books-list", "read", (r) => "★".repeat(r));
+});
+
+fetch("/data/films.json").then((res) => res.json()).then((films) => {
+    console.info(`${films.length} films loaded.`);
+    renderMedia(films, "films-list", "watched", (r) => {
+        let rating = "★".repeat(Math.floor(r));
+        if ((r + "").endsWith(".5")) rating += "½";
+        return rating;
+    });
+});

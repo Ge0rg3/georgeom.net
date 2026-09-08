@@ -9,7 +9,7 @@ class VirtualCookieJar {
     getItems() {
         return this.jar;
     }
-    
+
     getItem(key) {
         return this.getItems()[key];
     }
@@ -41,48 +41,9 @@ function removeDarkreaderStyles() {
 };
 let darkreaderInstalled = removeDarkreaderStyles();
 
-
-/*
-    Dock navbar when scrolling.
-*/
-const navbar = document.getElementById("navbar");
-const spacer = document.getElementById("navbar-spacer");
-const container = document.getElementById("page-contianer");
-
-// Resize navbar on page scroll
-function handleResize() {
-    // Not on mobile
-    if (screen.width < 450) {
-        navbar.style.width = "";
-        return
-    }
-    // Vars needed for navbar docking
-    navbarOffset = navbar.offsetTop;
-    navHeight = navbar.offsetHeight;
-    // Prevents sticky navbar width change due to scrollbar margin-right offset
-    let containerWidth = getComputedStyle(container).width;
-    navbar.style.width = containerWidth;
-}
-handleResize();
-window.onresize = handleResize;
-
-
-// Triggers on all scrolls
-function handleScroll() {
-    if (screen.width < 450) return; // Not on mobile
-    if (window.pageYOffset > navbarOffset) {
-        navbar.classList.add("sticky");
-        spacer.style.height = navHeight + "px";
-    } else {
-        navbar.classList.remove("sticky");
-        spacer.style.height = 0 + "px";
-    }
-}
-window.onscroll = function() {handleScroll()};
-
-
 /*
     Light/Dark theme toggle.
+    theme.js sets the class in <head>
     There are two different methods used to set themes:
     * localStorage: The preferred way, as vanilla JS cookie handling is annoying.
     * "Virtual" cookie jar: Simply stored within the JS context, non-persistant. For incognito users. 
@@ -99,23 +60,26 @@ catch {
     storageType = new VirtualCookieJar();
 }
 
-
-// Set page to dark/light via body "dark" class
+// Set page to dark/light via body/html "dark" class
 let themeText = document.getElementById("swap-theme-button");
 
 function setDark() {
+    document.documentElement.classList.add("dark");
+    document.documentElement.classList.remove("light");
     document.body.classList.add("dark");
     storageType.setItem("theme", "dark");
     themeText.innerText = "Light Theme";
 }
 
 function setLight() {
+    document.documentElement.classList.remove("dark");
+    document.documentElement.classList.add("light");
     document.body.classList.remove("dark");
     storageType.setItem("theme", "light");
     themeText.innerText = "Dark Theme";
 }
 
-// Set theme on page load
+// Set theme on page load (theme.js has already done <html>)
 let pageloadTheme = storageType.getItem("theme") || "dark";
 
 if (pageloadTheme === "dark") setDark();
@@ -129,28 +93,20 @@ function swapTheme() {
     else setLight();
 }
 
-
 /*
-    Repetitive tasks
+    Update theme when changed in another tab
 */
-// Autmatically update theme (i.e. if multiple windows are open)
-let currentTheme = pageloadTheme;
-setInterval(() => {
-    let previousTheme = currentTheme;
-    currentTheme = storageType.getItem("theme");
+window.addEventListener("storage", (evt) => {
+    if (evt.key !== "theme" || evt.newValue === null) return;
+    if (evt.newValue === "light") setLight();
+    else setDark();
+});
 
-    // If theme change, adjust
-    if (previousTheme !== currentTheme) {
-        if (currentTheme === "light") setLight();
-        else setDark();
-    }
-    
-    // If change to dark reader installation, adjust theme accordingly
+new MutationObserver(() => {
     let darkreaderCheck = removeDarkreaderStyles();
-    if (darkreaderCheck !== darkreaderInstalled) {
-        if (darkreaderCheck && currentTheme === "light") setDark();
-        else if (!darkreaderCheck && currentTheme === "dark") setLight();
-        darkreaderInstalled = darkreaderCheck;
-    }
-
-}, 250);
+    if (darkreaderCheck === darkreaderInstalled) return;
+    let currentTheme = storageType.getItem("theme");
+    if (darkreaderCheck && currentTheme === "light") setDark();
+    else if (!darkreaderCheck && currentTheme === "dark") setLight();
+    darkreaderInstalled = darkreaderCheck;
+}).observe(document.documentElement, { childList: true, subtree: true });

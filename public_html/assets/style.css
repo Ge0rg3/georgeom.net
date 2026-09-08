@@ -10,6 +10,20 @@ body {
     min-height: 100%;
 }
 
+/* Colour the page  */
+html.dark {
+    background-color: #2e3436;
+}
+html.light {
+    background-color: #fff;
+}
+
+/* Skeleton sets its own body colour (instead of inheriting html) */
+html.dark body {
+    color: #e2e6df;
+    background-color: #2e3436;
+}
+
 /* Skeleton helper funcs */
 .u-text-center {
     text-align: center !important;
@@ -58,17 +72,11 @@ a {
     }
 }
 
-/* Default spacer height, set dynamically by JS later */
-#navbar-spacer {
-    height: 0;
-}
-
 /* Make navbar stick to top of page, whilst maintaining container width */
-.sticky {
-    position: fixed;
+#navbar {
+    position: sticky;
     top: 0;
-    width: inherit;
-    max-width: inherit;
+    z-index: 10;
 }
 
 /* Center image in skeleton col */
@@ -115,5 +123,9 @@ li {
 }
 
 #blog-filter {
-    margin-top: -3rem;
+    margin-top: 0;
+}
+
+.post-separator {
+    width: 100%;
 }

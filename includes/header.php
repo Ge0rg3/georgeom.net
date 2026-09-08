@@ -12,9 +12,10 @@
                 ||----w |
                 ||     ||
 -->
-<html>
+<html lang="en" class="dark">
 
     <head>
+        <meta charset="utf-8">
         <title>georgeom.net</title>
         <meta name="description" content="A cybersecurity research and competition blog by George Omnet. Contains CTF write-ups, bug bounty writeups and independent research.">
         <meta name="author" content="George Omnet">
@@ -23,6 +24,14 @@
         <link rel="stylesheet" href="assets/third-parties/skeleton.css">
         <link rel="stylesheet" href="assets/third-parties/dark-skeleton.css">
         <link rel="stylesheet" href="assets/style.css">
+        <script src="assets/scripts/theme.js"></script>
+        <?php
+            // Prefetch nav pages
+            $self = basename($_SERVER["SCRIPT_NAME"] ?? "");
+            foreach (["index.php", "blog.php", "projects.php"] as $target) {
+                if ($target !== $self) echo "<link rel=\"prefetch\" href=\"$target\">\n        ";
+            }
+        ?>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">        
         <meta name="google-site-verification" content="7GT6boD82vaGq30OJUVrLAufphRmk5bGQjGkPzg8H6c" />
         <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -52,7 +61,6 @@
             </div>
 
             <!-- Links -->
-            <div id="navbar-spacer">&nbsp;</div>
             <div id="navbar" class="row u-text-center">
                 <div id="navbar-container" class="container">
                     <div class="three columns">

@@ -1,8 +1,7 @@
 // Get blog posts from JSON file
-const cacheBuster = btoa(new Date().toGMTString());
 
 let posts = [];
-fetch("/data/blog.json?cache=" + cacheBuster).then((res) => {
+fetch("/data/blog.json").then((res) => {
     res.json().then((retrievedPosts) => {
         console.info(`${retrievedPosts.length} posts loaded.`);
         posts = retrievedPosts;
@@ -29,19 +28,20 @@ function updatePosts() {
     })
     // Add to element
     let postsList = document.getElementById("blog-posts");
-    postsList.innerHTML = "";
+    const rows = [];
     for (let post of filteredPosts) {
         const date = new Date(post.date*1000).toUTCString();
-        postsList.innerHTML += `
+        rows.push(`
         <div class="row">
         <h5>${sanitize(post.title)}</h5>
         <p><i>${sanitize(date)}</i></p>
         <p>${sanitize(post.preview)}</p>
         <p><i><a href="${sanitize(post.link)}">Read more...</a></i></p>
         </div>
-        <hr style="width: 100%">
-        `;
+        <hr class="post-separator">
+        `);
     }
+    postsList.innerHTML = rows.join("");
 }
 
 // Add change listeners on selects
