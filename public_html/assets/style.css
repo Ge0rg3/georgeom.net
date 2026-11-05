@@ -65,6 +65,9 @@ a {
 @media (max-width: 449px) {
     #navbar-container div:not(:last-of-type) {
         display: inline-block;
+        float: none;
+        width: auto;
+        padding: 0 0.75rem;
         margin-bottom: 5%;
     }
     #navbar hr {
@@ -72,11 +75,13 @@ a {
     }
 }
 
-/* Make navbar stick to top of page, whilst maintaining container width */
-#navbar {
-    position: sticky;
-    top: 0;
-    z-index: 10;
+/* Make navbar stick to top of page */
+@media (min-width: 550px) {
+    #navbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
 }
 
 /* Center image in skeleton col */
@@ -107,6 +112,7 @@ a {
 /* Fit profile image to div */
 .profile-image {
     max-width: 75%;
+    height: auto;
 }
 
 
