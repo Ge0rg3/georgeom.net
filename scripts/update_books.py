@@ -1,14 +1,25 @@
 """
     Script to put most recent books read into JSON file.
-    Datetime parsed as RFC 822.
+    Goodreads retired its RSS feeds in October 2026, so this reads the public
+    shelf widget instead. The widget has no read dates, only the shelf order.
 """
-from email.utils import parsedate_to_datetime
 from bs4 import BeautifulSoup
-from feedparser import parse
 from json import dump
-from sys import argv
+from os import replace
+from re import search
+from sys import argv, exit
+from time import time
+from urllib.parse import urlsplit, urlunsplit
+from urllib.request import Request, urlopen
 
-RSS_URL = "https://www.goodreads.com/review/list_rss/141483159?shelf=read"
+USER_ID = "141483159"
+NUM_BOOKS = 10
+# widget_id must change per request, or Goodreads may serve a cached copy
+WIDGET_URL = (
+    f"https://www.goodreads.com/review/custom_widget/{USER_ID}"
+    f"?shelf=read&sort=date_read&order=d&num_books={NUM_BOOKS}"
+    f"&widget_id={int(time())}"
+)
 
 # Get output path or default
 if len(argv) < 2:
@@ -16,29 +27,50 @@ if len(argv) < 2:
 else:
     output_filepath = argv[1]
 
-# Get data from RSS feed
-feed = parse(RSS_URL)
-entries = feed.entries
 
-# Parse into array
+def fail(reason):
+    """Keep the existing file rather than overwrite it with nothing."""
+    print(f"update_books: {reason}, leaving {output_filepath} unchanged")
+    exit(1)
+
+
+# Get the widget, a JS snippet holding the shelf HTML in a string literal
+request = Request(WIDGET_URL, headers={"User-Agent": "Mozilla/5.0"})
+try:
+    with urlopen(request, timeout=30) as response:
+        script = response.read().decode("utf-8")
+except Exception as e:
+    fail(f"widget request failed ({e})")
+
+match = search(r"var widget_code = '(.*?)'\n", script)
+if not match:
+    fail("widget_code not found in widget response")
+html = match.group(1)
+for escaped, char in (('\\"', '"'), ("\\'", "'"), ("\\/", "/"), ("\\n", "\n")):
+    html = html.replace(escaped, char)
+
+# Parse into array, keeping the widget's newest-first order
 books = []
-for entry in entries:
-    read_at = entry.get("user_read_at")
-    added_at = entry.get("user_date_added")
-    date_obj = parsedate_to_datetime(read_at or added_at)
-    book_summary = BeautifulSoup(entry.get("summary"), "html.parser").text
-    rating = book_summary.split("rating: ")[2].split("\n")[0]
+soup = BeautifulSoup(html, "html.parser")
+for container in soup.select('div[class^="gr_custom_each_container"]'):
+    cover_link = container.select_one('div[class^="gr_custom_book_container"] a')
+    stars = container.select_one('div[class^="gr_custom_rating"] .staticStars')
+    if cover_link is None or stars is None:
+        continue
+    # Drop the utm_* tracking query string from the review link
+    link = urlunsplit(urlsplit(cover_link["href"])._replace(query=""))
+    rating = len(stars.select('img[src*="star_active"]'))
     books.append({
-        "title": entry.get("title"),
-        "read": int(date_obj.timestamp()),
-        "rating": int(rating),
-        "link": entry.get("link")
+        "title": cover_link["title"],
+        "rating": rating,
+        "link": link
     })
 
-# Sort by date
-sorted_books = sorted(books, key=lambda i: i["read"], reverse=True)
+if not books:
+    fail("no books found in widget")
 
-# Write to file
-f =  open(output_filepath, "w")
-dump(sorted_books, f)
-f.close()
+# Write to a temp file and rename, so a failed write never truncates the old file
+tmp_filepath = output_filepath + ".tmp"
+with open(tmp_filepath, "w") as f:
+    dump(books, f)
+replace(tmp_filepath, output_filepath)

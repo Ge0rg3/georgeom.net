@@ -7,10 +7,13 @@ function renderMedia(items, listId, dateField, formatRating) {
     const rows = [];
     for (let i = 0; i < Math.min(3, items.length); i++) {
         const item = items[i];
-        const dateObject = new Date(item[dateField] * 1000);
-        const dateString = dateObject.getDate() + "/" + (dateObject.getMonth() + 1) + "/" + dateObject.getFullYear();
+        let dateString = "";
+        if (dateField) {
+            const dateObject = new Date(item[dateField] * 1000);
+            dateString = " " + dateObject.getDate() + "/" + (dateObject.getMonth() + 1) + "/" + dateObject.getFullYear();
+        }
         rows.push(`<li><a href="${sanitize(item.link)}">
-        ${sanitize(item.title)} <span class="date">${formatRating(item.rating)} ${dateString}</span>
+        ${sanitize(item.title)} <span class="date">${formatRating(item.rating)}${dateString}</span>
         </a></li>`);
     }
     list.innerHTML = rows.join("");
@@ -18,7 +21,7 @@ function renderMedia(items, listId, dateField, formatRating) {
 
 fetch("/data/books.json").then((res) => res.json()).then((books) => {
     console.info(`${books.length} books loaded.`);
-    renderMedia(books, "books-list", "read", (r) => "★".repeat(r));
+    renderMedia(books, "books-list", null, (r) => "★".repeat(r));
 });
 
 fetch("/data/films.json").then((res) => res.json()).then((films) => {
