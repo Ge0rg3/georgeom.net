@@ -12,9 +12,10 @@ function renderMedia(items, listId, dateField, formatRating) {
             const dateObject = new Date(item[dateField] * 1000);
             dateString = " " + dateObject.getDate() + "/" + (dateObject.getMonth() + 1) + "/" + dateObject.getFullYear();
         }
-        rows.push(`<li><a href="${sanitize(item.link)}">
-        ${sanitize(item.title)} <span class="date">${formatRating(item.rating)}${dateString}</span>
-        </a></li>`);
+        const content = `${sanitize(item.title)} <span class="date">${formatRating(item.rating)}${dateString}</span>`;
+        rows.push(item.link
+            ? `<li><a href="${sanitize(item.link)}">${content}</a></li>`
+            : `<li>${content}</li>`);
     }
     list.innerHTML = rows.join("");
 }

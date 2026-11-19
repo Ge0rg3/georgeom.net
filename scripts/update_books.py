@@ -9,7 +9,6 @@ from os import replace
 from re import search
 from sys import argv, exit
 from time import time
-from urllib.parse import urlsplit, urlunsplit
 from urllib.request import Request, urlopen
 
 USER_ID = "141483159"
@@ -57,13 +56,10 @@ for container in soup.select('div[class^="gr_custom_each_container"]'):
     stars = container.select_one('div[class^="gr_custom_rating"] .staticStars')
     if cover_link is None or stars is None:
         continue
-    # Drop the utm_* tracking query string from the review link
-    link = urlunsplit(urlsplit(cover_link["href"])._replace(query=""))
     rating = len(stars.select('img[src*="star_active"]'))
     books.append({
         "title": cover_link["title"],
-        "rating": rating,
-        "link": link
+        "rating": rating
     })
 
 if not books:
