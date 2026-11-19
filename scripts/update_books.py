@@ -1,24 +1,14 @@
 """
-    Script to put most recent books read into JSON file.
-    Goodreads retired its RSS feeds in October 2026, so this reads the public
-    shelf widget instead. The widget has no read dates, only the shelf order.
+    Script to put most recent goodreads books into JSON file.
 """
 from bs4 import BeautifulSoup
 from json import dump
-from os import replace
 from re import search
 from sys import argv, exit
 from time import time
 from urllib.request import Request, urlopen
 
-USER_ID = "141483159"
-NUM_BOOKS = 10
-# widget_id must change per request, or Goodreads may serve a cached copy
-WIDGET_URL = (
-    f"https://www.goodreads.com/review/custom_widget/{USER_ID}"
-    f"?shelf=read&sort=date_read&order=d&num_books={NUM_BOOKS}"
-    f"&widget_id={int(time())}"
-)
+WIDGET_URL = "https://www.goodreads.com/review/custom_widget/141483159?shelf=read&sort=date_read&order=d&num_books=10"
 
 # Get output path or default
 if len(argv) < 2:
@@ -26,47 +16,36 @@ if len(argv) < 2:
 else:
     output_filepath = argv[1]
 
+# Get widget (new widget_id each time, else goodreads may serve a cached copy)
+request = Request(f"{WIDGET_URL}&widget_id={int(time())}", headers={"User-Agent": "Mozilla/5.0"})
+script = urlopen(request, timeout=30).read().decode("utf-8")
 
-def fail(reason):
-    """Keep the existing file rather than overwrite it with nothing."""
-    print(f"update_books: {reason}, leaving {output_filepath} unchanged")
-    exit(1)
-
-
-# Get the widget, a JS snippet holding the shelf HTML in a string literal
-request = Request(WIDGET_URL, headers={"User-Agent": "Mozilla/5.0"})
-try:
-    with urlopen(request, timeout=30) as response:
-        script = response.read().decode("utf-8")
-except Exception as e:
-    fail(f"widget request failed ({e})")
-
+# Extract HTML from the widget's JS string
 match = search(r"var widget_code = '(.*?)'\n", script)
-if not match:
-    fail("widget_code not found in widget response")
-html = match.group(1)
-for escaped, char in (('\\"', '"'), ("\\'", "'"), ("\\/", "/"), ("\\n", "\n")):
-    html = html.replace(escaped, char)
+if match is None:
+    print("Widget HTML not found, keeping old file")
+    exit(1)
+html = match.group(1).replace('\\"', '"').replace("\\'", "'").replace("\\/", "/").replace("\\n", "\n")
 
-# Parse into array, keeping the widget's newest-first order
+# Parse into array (widget is already sorted by read date)
 books = []
 soup = BeautifulSoup(html, "html.parser")
-for container in soup.select('div[class^="gr_custom_each_container"]'):
-    cover_link = container.select_one('div[class^="gr_custom_book_container"] a')
-    stars = container.select_one('div[class^="gr_custom_rating"] .staticStars')
-    if cover_link is None or stars is None:
+for book in soup.select('div[class^="gr_custom_each_container"]'):
+    cover = book.select_one('div[class^="gr_custom_book_container"] a')
+    stars = book.select_one('div[class^="gr_custom_rating"] .staticStars')
+    if cover is None or stars is None:
         continue
-    rating = len(stars.select('img[src*="star_active"]'))
     books.append({
-        "title": cover_link["title"],
-        "rating": rating
+        "title": cover["title"],
+        "rating": len(stars.select('img[src*="star_active"]'))
     })
 
-if not books:
-    fail("no books found in widget")
+# Don't overwrite old file with nothing
+if len(books) == 0:
+    print("No books found, keeping old file")
+    exit(1)
 
-# Write to a temp file and rename, so a failed write never truncates the old file
-tmp_filepath = output_filepath + ".tmp"
-with open(tmp_filepath, "w") as f:
-    dump(books, f)
-replace(tmp_filepath, output_filepath)
+# Write to file
+f = open(output_filepath, "w")
+dump(books, f)
+f.close()
